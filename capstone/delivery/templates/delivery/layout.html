@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}TaiwanCafe{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'delivery/styles.css' %}?{% now 'U' %}" type="text/css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="{% static 'delivery/delivery.js' %}"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <body onload="loadoptions()">
+        <div style="background-color:rgb(49, 44, 44); text-align: center; color: whitesmoke;">
+            <!--<img src="static/auctions/auction.jfif" alt="auction" width="1200" height="200">-->
+            <h1 style='padding-top: 30px;padding-bottom:5px;margin-bottom: 10px;'>TaiwainCafe&nbsp;☕</h1>
+            <ul class="nav justify-content-center">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    Signed in as <strong>{{ user.username }}</strong>.
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    Not signed in.
+                </li>
+                {% endif %}
+            </ul>
+            <ul class="nav justify-content-end" style="margin-right: 50px;">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="{% url 'cart'%}" id="cart_button" class="btn btn-primary" role="button" style="background-color: white;color:rgb(122, 31, 31); font-weight: bold;">🛒&nbsp;Cart-0</a>
+                    </li>
+                {% endif %}
+            </ul>         
+            
+            <ul class="nav" style="margin-left: 50px;">         
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}" style="color: whitesmoke;">ℹ️&nbsp;About</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'order' %}" style="color: whitesmoke;">🍜&nbsp;Order Food</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'orders' %}" style="color: whitesmoke;">🧾&nbsp;Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}" style="color: whitesmoke;">Log Out</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}" style="color: whitesmoke;">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}" style="color: whitesmoke;">Register</a>
+                    </li>
+                {% endif %}        
+            </ul>
+        </div>
+        <br>
+        <br>
+        
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

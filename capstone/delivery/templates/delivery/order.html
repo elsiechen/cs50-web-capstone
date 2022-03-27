@@ -1,0 +1,133 @@
+{% extends "delivery/layout.html" %}
+{% load static %}
+
+{% block body %} 
+
+<div class="container">
+    <!--Menu View-->
+    <div class="menu">
+        <div class="card-title">
+            <h3>Appetizes</h3>
+        </div>  
+        <div class="menu-container card-deck">      
+            {% for item in app %}
+            <div class="card" style="max-width:250px; max-height: 250px;"> 
+                <div class="plus-container">
+                    <img class="card-img-top" src='{{ MEDIA_URL }}{{ item.image }}' alt="Card image" style="width:250px; height:150px;">
+                    <button type="button" class="open_button btn btn-secondary btn-lg btn-block" data-openid="{{ item.id }}" id="openId_{{ item.id }}">+</button>                                           
+                </div>
+                <span style="font-size: medium; font-weight: 500;">{{ item.name }}</span>
+                <span style="font-size: small;">${{ item.price }}</span>        
+            </div>    
+            {% endfor %}      
+        </div>
+        <br>
+        <br>
+        <div class="card-title">
+            <h3>Entres</h3>
+        </div>  
+        <div class="menu-container card-deck">      
+            {% for item in ent %}
+            <div class="card" style="max-width:250px; max-height: 250px;"> 
+                <div class="plus-container">
+                    <img class="card-img-top" src='{{ MEDIA_URL }}{{ item.image }}' alt="Card image" style="width:250px; height:150px;">
+                    <button type="button" class="open_button btn btn-secondary btn-lg btn-block" data-openid="{{ item.id }}" id="openId_{{ item.id }}">+</button>                                           
+                </div>
+                <span style="font-size: medium; font-weight: 500;">{{ item.name }}</span>
+                <span style="font-size: small;">${{ item.price }}</span>        
+            </div>    
+            {% endfor %}      
+        </div>
+        <br>
+        <br>
+        <div class="card-title">
+            <h3>Desserts</h3>
+        </div>  
+        <div class="menu-container card-deck">      
+            {% for item in des %}
+            <div class="card" style="max-width:250px; max-height: 250px;"> 
+                <div class="plus-container">
+                    <img class="card-img-top" src='{{ MEDIA_URL }}{{ item.image }}' alt="Card image" style="width:250px; height:150px;">
+                    <button type="button" class="open_button btn btn-secondary btn-lg btn-block" data-openid="{{ item.id }}" id="openId_{{ item.id }}">+</button>                                           
+                </div>
+                <span style="font-size: medium; font-weight: 500;">{{ item.name }}</span>
+                <span style="font-size: small;">${{ item.price }}</span>        
+            </div>    
+            {% endfor %}      
+        </div>
+        <br>
+        <br>
+        <div class="card-title">
+            <h3>Soups</h3>
+        </div>  
+        <div class="menu-container card-deck">      
+            {% for item in sou %}
+            <div class="card" style="max-width:250px; max-height: 250px;"> 
+                <div class="plus-container">
+                    <img class="card-img-top" src='{{ MEDIA_URL }}{{ item.image }}' alt="Card image" style="width:250px; height:150px;">
+                    <button type="button" class="open_button btn btn-secondary btn-lg btn-block" data-openid="{{ item.id }}" id="openId_{{ item.id }}">+</button>                                           
+                </div>
+                <span style="font-size: medium; font-weight: 500;">{{ item.name }}</span>
+                <span style="font-size: small;">${{ item.price }}</span>        
+            </div>    
+            {% endfor %}      
+        </div>
+        <br>
+        <br>
+        <div class="card-title">
+            <h3>Drink</h3>
+        </div>  
+        <div class="menu-container card-deck">      
+            {% for item in dri %}
+            <div class="card" style="max-width:250px; max-height: 250px;"> 
+                <div class="plus-container">
+                    <img class="card-img-top" src='{{ MEDIA_URL }}{{ item.image }}' alt="Card image" style="width:250px; height:150px;">
+                    <button type="button" class="open_button btn btn-secondary btn-lg btn-block" data-openid="{{ item.id }}" id="openId_{{ item.id }}">+</button>                                           
+                </div>
+                <span style="font-size: medium; font-weight: 500;">{{ item.name }}</span>
+                <span style="font-size: small;">${{ item.price }}</span>        
+            </div>    
+            {% endfor %}      
+        </div>
+    </div>
+
+    <!--Listing View--> 
+    {% for item in meals %}
+    <div class="listing-container card" data-listingid="{{ item.id }}" style="display: none; width:400px; height: auto;">                   
+        <div class="img-container">
+            <img class="card-img-top" src='{{ MEDIA_URL }}{{ item.image }}' alt="Card image" style="width:370px;">
+            <button type="button" class="btn-circle close_button" data-closebuttonid="{{ item.id }}" id="closeButtonId_{{ item.id }}"><strong>X</strong></button>       
+        </div>
+        <span style="font-size: medium; font-weight: 500;">{{ item.name }}</span>   
+        <div class="card-text">
+            {{ item.description }}
+        </div> 
+        <br>                   
+        <div class="card-text">
+            <input type="hidden" id="price_{{ item.id }}" value="{{ item.price }}">
+            <div>
+                <input class="radio" type="radio" name="{{ item.id }}" value="3" onclick="handleSize(this);">Small&nbsp;&nbsp;-$3.00
+            </div>
+            <div>
+                <input class="radio" type="radio" name="{{ item.id }}" value="1" onclick="handleSize(this);" checked>Medium 
+            </div>
+            <div>
+                <input class="radio" type="radio" name="{{ item.id }}" value="2" onclick="handleSize(this);">Large&nbsp;&nbsp; +$4.00
+            </div>
+            <div class="row">
+                <button class="btn-circle minus_button" data-minusid="{{ item.id }}">-</button>
+                <h6 name="qty" class="qty" id="qty_{{ item.id }}" data-qtyid="{{ item.id }}" style="margin-top:20px; margin-left: 2px; margin-right: 2px;">1</h6>               
+                <button class="btn-circle plus_button" data-plusid="{{ item.id }}">+</button>
+                <br>
+                <button id="addbutton_{{ item.id }}" class="btn btn-secondary btn-lg btn-block add_button" data-addbuttonid="{{ item.id }}" style="height:40px; width:240px; font-size: medium; margin-top:15px; margin-bottom: 15px; margin-right: 5px;">Add&nbsp;1&nbsp;to Order &nbsp;${{ item.price }}</button>                                
+            </div>
+            
+        </div>                   
+    </div>    
+    {% endfor %}  
+    
+</div>   
+{% endblock %}
+
+
+

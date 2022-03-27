@@ -1,0 +1,60 @@
+{% extends "delivery/layout.html" %}
+{% load static %}
+
+{% block body %}
+{% for i in orders %}
+<div class="container" style="border: 2px; width:800px">       
+    <div class="card" style="border: 2px">       
+        <div class="card-body">
+            <div class="card-title" style="background-color: rgb(122, 31, 31);color:white; padding:10px">
+                <h4 class="inline">#&nbsp;{{ i.id }}</h4>
+                <div class="inlineright">Created on: {{ i.created_time }}</div>           
+            </div>
+            <div style="background-color: rgb(216, 212, 212); padding:20px">
+                <div class="card-text">
+                    <h5>Delivery Time:</h5>{{ i.delivery_time }}
+                </div>
+                <br>
+                <div class="card-text">
+                    <h5>Delivery Address:</h5> {{ i.address }}
+                </div>
+                <br>
+                <div class="card-text">
+                    <h5>Order Items:</h5>
+                    <div>
+                        {% for j in i.orderitems.all %}
+                            {{ j.meal }}&nbsp;&nbsp;Size:&nbsp;{{ j.size }}&nbsp;&nbsp;QTY:&nbsp;{{ j.qty }}&nbsp;&nbsp;@&nbsp;${{ j.price }}<br>
+                        {% endfor %}
+                    </div>
+                </div>
+                <br>
+                <div class="card-text">
+                    <h5>Note:</h5> {{ i.note }}
+                </div>
+                <br>
+                <div class="card-text">
+                    <h5>Utensils:</h5> {{ i.utensils }}
+                </div>   
+                <br>        
+                <div class="card-text">
+                    <div>
+                        <h5 class="inline">Subtotal</h5><h5 id="subtotal" class="inlineright">$&nbsp;{{ i.subtotal }}</h5>           
+                    </div>
+                    <div>
+                        <h5 class="inline">Delivery Fee</h5>&nbsp;<button type="button" class="info-btn inline" title="Delivery fee is 2% of subtotal, which ranges from $2.5 to $5. ">i</button><h5 id="d_fee" class="inlineright">$&nbsp;{{ i.fee }}</h5> 
+                    </div>     
+                    <br>
+                    <div>
+                        <h5 class="inline">Taxes</h5><h5 id="tax" class="inlineright">$&nbsp;{{ i.tax }}</h5> 
+                    </div>
+                    <hr>
+                    <div>py
+                        <h5 class="inline">Total</h5><h5 id="total" class="inlineright">$&nbsp;{{ i.total }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>      
+</div>
+{% endfor %}
+{% endblock %}

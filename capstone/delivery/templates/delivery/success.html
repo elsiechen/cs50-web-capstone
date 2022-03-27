@@ -1,0 +1,28 @@
+{% extends "delivery/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="container" style="border: 2px; width:800px">       
+    <div class="card" style="border: 2px">       
+        <div class="card-body">
+            <div style="background-color: rgb(216, 212, 212); padding:20px">
+                <div class="card-text">
+                    <h3>Your order #&nbsp;{{ order.id }}&nbsp;has successfully submitted!</h3> 
+                </div>
+                <br>
+                <div class="card-text">
+                    <p style="font-size:large">
+                        Hi, <span style="font-weight: bold;">{{ user.username }}</span>! Thanks for ordering from <span style="color: white; font-weight: bold;">TaiwanCafe</span>.
+                        For details about this order, please see the orders tag in our webpage.           
+                    </p>
+                </div>
+                <div class="card-text">
+                    <a href="{% url 'orders'%}" style="color:rgb(122, 31, 31); font-weight: bolder;">Go To Orders</a>
+                </div>
+                <br>
+                
+            </div>
+        </div>        
+    </div>      
+</div>
+{% endblock %}

@@ -1,0 +1,173 @@
+body, html {
+    height: 100%;
+    
+  }
+
+.info {
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 50px;
+  color:white;
+  padding-top: 40px;
+  font-size: large;
+}
+
+.bg { 
+    /* The image used */
+    background-image: url("tw.jfif");
+  
+    /* Full height */
+    height: 60%; 
+    width: 60%;
+    margin-left: 300px; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    margin-bottom: 100px;
+    text-align: center;
+  }
+
+
+
+div.container .menu { 
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+
+div.container .listing-container.card {
+  position: fixed;
+  margin: 0 auto;
+  background-color: white;
+  width: 400px;
+  right: 560px;
+  bottom: 150px; 
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+ 
+
+/*plus button of menu item*/
+div.container .menu .menu-container.card-deck .card .plus-container {
+  position: relative;
+}
+
+div.container .menu .menu-container.card-deck .card .plus-container .open_button{
+  width: 30px;
+  height: 30px;
+  text-align: large;
+  padding: 6px 0;
+  font-size: medium;
+  font-weight: 400;
+  line-height: 1.428571429;
+  border-radius: 15px;
+  background-color: black;
+  border: none;
+  position: absolute;
+  bottom: 0;
+  left: 80%;
+  top:5%
+}
+
+
+
+/*close button of listing item*/
+div.container .listing-container.card .img-container {
+  position: relative;
+}
+
+div.container .listing-container.card .img-container .btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+  background-color: white;
+  border: none;
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+  top:5%
+}
+
+
+/* minus/plus button of listing item*/
+div.container .listing-container.card .row .btn-circle {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: medium;
+  padding: 2px 0; 
+  line-height: 1.428571429;
+  border-radius: 20px;
+  background-color: gray;
+  border: none;
+  margin: 10px;
+}
+
+/*size radio*/
+div.container .listing-container.card .class {
+  margin-bottom:15px;
+}
+
+.inline {
+  display: inline;
+}
+
+.button {
+  border-radius: 20px;
+  background-color: rgb(235, 232, 232);
+  width: 135px;
+  font-weight: 500;
+  padding: 5px; 
+  font-size: medium;
+  text-align: center;
+  border: none;
+  margin: 5px;
+}
+
+.split {
+  height: 100%; 
+  position: fixed;
+  z-index: 1; 
+  overflow-x: hidden;
+  padding-right: 40px;
+  padding-left: 40px;
+}
+
+.left {
+  left: 0;
+  width: 60%;
+}
+
+.right {
+  right:0;
+  width: 40%;
+  background-color: rgb(248, 247, 247);
+}
+
+.info-btn {
+  width: 15px;
+  height: 15px; 
+  font-size: medium; 
+  border-radius: 20px;
+  background-color: gray;
+  border: none;
+  color: white;
+}
+
+.inlineleft{
+  float: left;
+}
+
+.inlineright{
+  float: right;
+}

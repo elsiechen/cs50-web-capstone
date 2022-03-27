@@ -1,0 +1,95 @@
+{% extends "delivery/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="container">
+<form action="{% url 'cart' %}" method="post">
+    <div class="split left" style="margin-bottom: 20px;">        
+        {% csrf_token %}
+        <div>
+            <h2>Delivery At</h2>
+            <label for="address">📍 Address:</label>
+            <input type="text" id="address" name="address" class="inline" autofocus required>
+        </div>               
+        <hr>
+        <div>
+            <h2>Estimate Time</h2>
+            <div>
+                <h5 class="inline">🕧</h5>
+                <input type="button" id="time_button" name="time_button" class="inline button" style="width:auto" required>
+            </div>
+            
+            <div id="time-view" > 
+                <label for="date">Date</label>
+                <select id ="date" name="date" onchange="loadoptions()">
+                    <option value="Today, {{ today }}">Today, {{ today }}</option>
+                    <option value="{{ tomorrow }}">{{ tomorrow }}</option>
+                    <option value="{{ third_day }}">{{ third_day }}</option>
+                    <option value="{{ forth_day }}">{{ forth_day }}</option>
+                    <option value="{{ fifth_day }}">{{ fifth_day }}</option>
+                    <option value="{{ sixth_day }}">{{ sixth_day }}</option>
+                    <option value="{{ seventh_day }}">{{ seventh_day }}</option>
+                </select>
+                <label for="time">Time</label>
+                <select id ="time" name="time"></select>
+        
+                <button class="button" type="button" id="delivery_now_button" name="delivery_now_button">Deliver Now</button>
+                <button class="button" type="button" id="time_form_button" name="time_form_button">Schedule</button>  
+            </div>
+        </div>
+        <hr>       
+        <div>
+            <h2 class="inline">Your Items</h2>
+            <a href="{% url 'order'%}" id="add_items" class="inline button" style="color: black; width:135px; font-weight:500; padding: 5px;" role="button">+&nbsp;&nbsp;Add Items</a>
+        </div>      
+        {% for i in items %}
+        <div id="select_item_{{ i.id }}">
+            <select id="select_qty_{{ i.id }}" data-selectqtyid="{{ i.id }}" name="chooseqty" class="select_qty inline button" style="width: 50px">
+                <option value="0">Remove</option>
+                <option value="{{ i.qty }}" selected>{{ i.qty }}</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>   
+            </select>
+
+            <h3 class="inline"></h3>{{ i.meal }}&nbsp;@&nbsp;{{ i.price }}&nbsp;size: {{ i.size }}</h3>
+        </div>
+        {% endfor %}
+        <br>
+        <input type="checkbox" id="utensils" name="utensils" value="True">
+        <label for="utensils">Request utensils, straws, etc.</label>
+        <br>   
+        <textarea id="note" name="note" rows="1" cols="50" placeholder="Add a note for the store"></textarea><br><br>
+    </div>
+    <div class="split right">
+        <button type="submit" id="place_order" class="btn btn-secondary btn-lg btn-block add_button">Place Order</button>
+        <div>
+            <h5 class="inline">Subtotal</h5><h5 id="subtotal" class="inlineright">$&nbsp;{{ subtotal }}</h5>           
+        </div>
+        <div>
+            <h5 class="inline">Delivery Fee</h5>&nbsp;<button type="button" class="info-btn inline" title="Delivery fee is 2% of subtotal, which ranges from $2.5 to $5. ">i</button><h5 id="d_fee" class="inlineright">$&nbsp;{{ d_fee }}</h5> 
+        </div>     
+        <br>
+        <div>
+            <h5 class="inline">Taxes</h5><h5 id="tax" class="inlineright">$&nbsp;{{ tax }}</h5> 
+        </div>
+        <hr>
+        <div>
+            <h5 class="inline">Total</h5><h5 id="total" class="inlineright">$&nbsp;{{ total }}</h5>
+        </div>
+             
+        
+    </div>
+</form>
+</div>
+
+
+
+{% endblock %}
