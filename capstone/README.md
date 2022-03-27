@@ -9,7 +9,7 @@ In order.html, the popup page is at the same page of menu(order.html), and chang
 In cart.html, user can schedule the order by choosing date from the following days and time from corresponding opening hours using JavaScript. Order items in cart are retrieved from session and quantity can be updated or removed through JavaScript. Upon change of items or quantity, amount to pay is updated without reloading the page.
 
 # What’s contained in each file
-##index.html
+## index.html
 In this file, information about the restaurant like opening hours, address, direction link are included.
 
 ## order.html
