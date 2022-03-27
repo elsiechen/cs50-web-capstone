@@ -1,3 +1,4 @@
+Demo video on youtube: [TaiwanCafe](https://youtu.be/l_4ng7zpHPM)
 
 # Distinctiveness and Complexity
 ## Distinctiveness
